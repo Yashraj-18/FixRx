@@ -10,6 +10,7 @@ import { navigationRef } from './src/navigation/navigationRef';
 import ErrorBoundary from './src/components/ErrorBoundary';
 import CrashPrevention from './src/utils/crashPrevention';
 import { useWebSocket } from './src/hooks/useWebSocket'; // Re-enabled for real-time chat
+import websocketDebug from './src/utils/websocketDebug'; // Safe debugging utility
 
 // Auth Screens
 import WelcomeScreen from './src/screens/WelcomeScreen';
