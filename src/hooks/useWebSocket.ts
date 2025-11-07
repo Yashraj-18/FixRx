@@ -68,11 +68,11 @@ export const useWebSocket = (autoConnect: boolean = true) => {
       if (autoConnect) {
         try {
           // Enable WebSocket connection for real-time chat
-          console.log('Attempting WebSocket auto-connect...');
+          console.log('🔗 Attempting WebSocket auto-connect...');
           await connect();
           updateStatus();
         } catch (error) {
-          console.warn('WebSocket initialization failed, will use fallback mode:', error);
+          console.warn('⚠️ WebSocket initialization failed, will use fallback mode:', error);
           updateStatus();
         }
       }
@@ -80,11 +80,17 @@ export const useWebSocket = (autoConnect: boolean = true) => {
 
     initializeWebSocket();
 
-    // Disable status update interval to prevent performance issues
-    // const statusInterval = setInterval(updateStatus, 5000);
+    // Add safe status update interval
+    const statusInterval = setInterval(() => {
+      try {
+        updateStatus();
+      } catch (error) {
+        console.warn('⚠️ Status update failed:', error);
+      }
+    }, 5000);
 
     return () => {
-      // clearInterval(statusInterval);
+      clearInterval(statusInterval);
     };
   }, [autoConnect, updateStatus]);
 
