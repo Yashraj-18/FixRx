@@ -59,20 +59,11 @@ export default function App() {
     initOnce();
 
     if (__DEV__) {
-      console.log('🔗 WebSocket Status:', webSocket.status);
+      // Enable safe WebSocket debugging
+      websocketDebug.enable();
 
-      // Global WebSocket testing utilities (safe implementation)
-      (global as any).wsTest = {
-        status: () => console.log('WebSocket Status:', webSocket.status),
-        connect: () => webSocket.connect(),
-        disconnect: () => webSocket.disconnect(),
-        reconnect: () => webSocket.forceReconnect(),
-        test: async () => {
-          const connected = await webSocket.connect();
-          console.log('WebSocket test result:', connected);
-          return connected;
-        }
-      };
+      console.log('🔗 WebSocket Status:', webSocket.status);
+      console.log('🧪 Use wsDebug.test() to test WebSocket connection');
     }
   }, []); // Run only once on mount
 
