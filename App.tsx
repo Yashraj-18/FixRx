@@ -175,6 +175,8 @@ export default function App() {
             />
             </Stack.Navigator>
               </NavigationContainer>
+              {/* Debug WebSocket Manager - only visible in development when manually enabled */}
+              {__DEV__ && <WebSocketManager enabled={false} />}
             </AppProvider>
           </ThemeProvider>
         </SafeAreaProvider>
