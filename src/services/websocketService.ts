@@ -41,11 +41,11 @@ class WebSocketService {
   private disabled = false;
 
   private config = {
-    url: process.env.EXPO_PUBLIC_WS_URL || process.env.EXPO_PUBLIC_API_BASE_URL?.replace('/api/v1', '') || 'http://localhost:3000',
+    url: process.env.EXPO_PUBLIC_WS_URL || 'http://localhost:3001',
     reconnectionAttempts: 5,
     reconnectionDelay: 2000,
     maxReconnectDelay: 10000,
-    timeout: 30000,
+    timeout: 10000, // Reduced timeout for faster fallback
   };
 
   connect = async (token?: string): Promise<boolean> => {
