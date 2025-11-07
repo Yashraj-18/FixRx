@@ -63,12 +63,9 @@ export default function App() {
     initOnce();
 
     if (__DEV__) {
-      // Re-enabled WebSocket tools for development
-      WebSocketTester.enableDevTools();
-
       console.log('🔗 WebSocket Status:', webSocket.status);
 
-      // Global WebSocket testing utilities
+      // Global WebSocket testing utilities (safe implementation)
       (global as any).wsTest = {
         status: () => console.log('WebSocket Status:', webSocket.status),
         connect: () => webSocket.connect(),
