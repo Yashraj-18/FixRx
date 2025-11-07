@@ -46,8 +46,8 @@ const Stack = createNativeStackNavigator();
 
 // Main App Component
 export default function App() {
-  // Re-enabled WebSocket for real-time chat with proper error handling
-  const webSocket = useWebSocket(true); // Enable auto-connect
+  // Temporarily disable WebSocket auto-connect to test app stability
+  const webSocket = useWebSocket(false); // Disable auto-connect for testing
 
   // Initialize crash prevention and WebSocket
   useEffect(() => {
