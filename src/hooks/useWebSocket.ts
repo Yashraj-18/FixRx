@@ -15,7 +15,7 @@ interface WebSocketStatus {
   url: string;
 }
 
-export const useWebSocket = (autoConnect: boolean = true) => {
+export const useWebSocket = (autoConnect: boolean = false) => {
   const [status, setStatus] = useState<WebSocketStatus>({
     connected: false,
     reconnecting: false,
