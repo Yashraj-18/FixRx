@@ -45,29 +45,19 @@ const Stack = createNativeStackNavigator();
 
 // Main App Component
 export default function App() {
-  // Temporarily disable WebSocket auto-connect to test app stability
-  const webSocket = useWebSocket(false); // Disable auto-connect for testing
-
-  // Initialize crash prevention and WebSocket
+  // Simplified app initialization without WebSocket auto-connect
   useEffect(() => {
     // Initialize crash prevention systems (run once)
     const initOnce = async () => {
-      CrashPrevention.initialize();
+      try {
+        CrashPrevention.initialize();
+        console.log('🛡️ Crash prevention initialized');
+      } catch (error) {
+        console.warn('⚠️ Crash prevention initialization failed:', error);
+      }
     };
 
     initOnce();
-
-    if (__DEV__) {
-      try {
-        // Enable safe WebSocket debugging
-        websocketDebug.enable();
-
-        console.log('🔗 WebSocket Status:', webSocket.status);
-        console.log('🧪 Use wsDebug.test() to test WebSocket connection');
-      } catch (error) {
-        console.warn('⚠️ WebSocket debugging disabled due to error:', error);
-      }
-    }
   }, []); // Run only once on mount
 
   return (
