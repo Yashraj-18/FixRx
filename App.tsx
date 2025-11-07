@@ -59,11 +59,15 @@ export default function App() {
     initOnce();
 
     if (__DEV__) {
-      // Enable safe WebSocket debugging
-      websocketDebug.enable();
+      try {
+        // Enable safe WebSocket debugging
+        websocketDebug.enable();
 
-      console.log('🔗 WebSocket Status:', webSocket.status);
-      console.log('🧪 Use wsDebug.test() to test WebSocket connection');
+        console.log('🔗 WebSocket Status:', webSocket.status);
+        console.log('🧪 Use wsDebug.test() to test WebSocket connection');
+      } catch (error) {
+        console.warn('⚠️ WebSocket debugging disabled due to error:', error);
+      }
     }
   }, []); // Run only once on mount
 
