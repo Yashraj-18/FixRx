@@ -47,37 +47,40 @@ const Stack = createNativeStackNavigator();
 
 // Main App Component
 export default function App() {
-  // WebSocket disabled for demo to prevent API errors
-  // const webSocket = useWebSocket(false);
+  // Re-enabled WebSocket for real-time chat with proper error handling
+  const webSocket = useWebSocket(true); // Enable auto-connect
 
   // Initialize crash prevention and session manager
   useEffect(() => {
     // Initialize crash prevention systems (run once)
     const initOnce = async () => {
       CrashPrevention.initialize();
-      
+
       if (__DEV__) {
         await sessionManager.initializeDevSessionClearing();
       }
     };
-    
+
     initOnce();
-    
+
     if (__DEV__) {
-      // WebSocket tools disabled for demo to prevent API errors
-      // WebSocketTester.enableDevTools(); // Disabled to prevent connection spam
-      
-      // (global as any).wsAdapter = {
-      //   switch: (impl: 'original' | 'enhanced') => {
-      //     webSocketAdapter.switchImplementation(impl);
-      //     console.log(`Switched to ${impl} implementation`);
-      //   },
-      //   status: () => console.log('WebSocket Status:', webSocketAdapter.getStatus()),
-      //   test: () => webSocketAdapter.connect(),
-      //   testBoth: () => webSocketAdapter.testBothImplementations(),
-      // };
-      
-      // console.log('WebSocket Status:', webSocket.status);
+      // Re-enabled WebSocket tools for development
+      WebSocketTester.enableDevTools();
+
+      console.log('🔗 WebSocket Status:', webSocket.status);
+
+      // Global WebSocket testing utilities
+      (global as any).wsTest = {
+        status: () => console.log('WebSocket Status:', webSocket.status),
+        connect: () => webSocket.connect(),
+        disconnect: () => webSocket.disconnect(),
+        reconnect: () => webSocket.forceReconnect(),
+        test: async () => {
+          const connected = await webSocket.connect();
+          console.log('WebSocket test result:', connected);
+          return connected;
+        }
+      };
     }
   }, []); // Run only once on mount
 
