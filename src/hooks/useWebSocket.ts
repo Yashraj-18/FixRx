@@ -67,11 +67,12 @@ export const useWebSocket = (autoConnect: boolean = true) => {
     const initializeWebSocket = async () => {
       if (autoConnect) {
         try {
-          // Skip WebSocket connection for now to avoid chat issues
-          console.log('WebSocket auto-connect disabled to prevent connection issues');
+          // Enable WebSocket connection for real-time chat
+          console.log('Attempting WebSocket auto-connect...');
+          await connect();
           updateStatus();
         } catch (error) {
-          console.warn('WebSocket initialization failed:', error);
+          console.warn('WebSocket initialization failed, will use fallback mode:', error);
           updateStatus();
         }
       }
