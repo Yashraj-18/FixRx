@@ -48,15 +48,11 @@ export default function App() {
   // Re-enabled WebSocket for real-time chat with proper error handling
   const webSocket = useWebSocket(true); // Enable auto-connect
 
-  // Initialize crash prevention and session manager
+  // Initialize crash prevention and WebSocket
   useEffect(() => {
     // Initialize crash prevention systems (run once)
     const initOnce = async () => {
       CrashPrevention.initialize();
-
-      if (__DEV__) {
-        await sessionManager.initializeDevSessionClearing();
-      }
     };
 
     initOnce();
