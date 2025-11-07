@@ -8,7 +8,6 @@ import { AppProvider } from './src/context/AppContext';
 import { ThemeProvider } from './src/context/ThemeContext';
 import { navigationRef } from './src/navigation/navigationRef';
 import ErrorBoundary from './src/components/ErrorBoundary';
-import { sessionManager } from './src/utils/sessionManager';
 import CrashPrevention from './src/utils/crashPrevention';
 import { useWebSocket } from './src/hooks/useWebSocket'; // Re-enabled for real-time chat
 
