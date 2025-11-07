@@ -10,9 +10,8 @@ import { navigationRef } from './src/navigation/navigationRef';
 import ErrorBoundary from './src/components/ErrorBoundary';
 import { sessionManager } from './src/utils/sessionManager';
 import CrashPrevention from './src/utils/crashPrevention';
-// import { useWebSocket } from './src/hooks/useWebSocket'; // Disabled for demo
-// import WebSocketTester from './src/utils/websocketTester'; // Disabled for demo
-// import { webSocketAdapter } from './src/services/websocket/WebSocketAdapter'; // Disabled for demo
+import { useWebSocket } from './src/hooks/useWebSocket'; // Re-enabled for real-time chat
+import WebSocketTester from './src/utils/websocketTester'; // Re-enabled for development
 
 // Auth Screens
 import WelcomeScreen from './src/screens/WelcomeScreen';
